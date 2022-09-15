@@ -1,0 +1,77 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     	confinedGWFlowFOAM;
+
+startFrom       	startTime;
+
+startTime       	0;
+
+stopAt          	endTime;
+
+endTime         	1296000;
+
+deltaT          	360;
+
+writeControl    	adjustableRunTime;
+
+writeInterval   	86400;
+
+purgeWrite      	0;
+
+writeFormat     	ascii;
+
+writePrecision  	6;
+
+writeCompression 	uncompressed;
+
+timeFormat      	general;
+
+timePrecision   	6;
+
+runTimeModifiable 	true;
+
+adjustTimeStep  	true;
+
+maxDeltaT       	360;
+
+functions
+{
+    observationLocations
+    {
+        type            		probes;
+        functionObjectLibs 		("libsampling.so");
+        enabled         		true;
+        writeControl   			timeStep;
+        writeInterval  			1;
+        interpolationScheme 	cellPointFace;
+        probeLocations
+        (
+            (1600 1600.1 0.5)
+            (1905 1645 0.5)
+            (3100 1530 0.5)
+        );
+        fields
+        (
+           h    
+        );
+    }
+}
+
+libs ("specifiedConstantConfinedGWFluxBC.so");
+
+// ************************************************************************* //
