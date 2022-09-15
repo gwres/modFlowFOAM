@@ -1,0 +1,22 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+set -x
+
+# cleaning solvers 
+
+cd modFlowBoundaryConditions/
+wclean specifiedConstantConfinedGWFluxBC
+rm ${FOAM_USER_LIBBIN}/specifiedConstantConfinedGWFluxBC.so
+wclean wellConfinedBC
+rm ${FOAM_USER_LIBBIN}/wellConfinedBC.so
+cd ..
+cd modFlowFOAM/
+wclean confinedGWFlowFOAM
+rm ${FOAM_USER_APPBIN}/confinedGWFlowFOAM
+cd confinedGWFlowROM/
+wclean preComputation
+rm ${FOAM_USER_APPBIN}/preComputation
+wclean snapshotMatrix
+rm ${FOAM_USER_APPBIN}/snapshotMatrix
+wclean reducedConfinedGWFlowFOAM
+rm ${FOAM_USER_APPBIN}/reducedConfinedGWFlowFOAM

@@ -1,0 +1,16 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+set -x
+
+# Compiling solvers 
+
+cd modFlowBoundaryConditions/
+wmake libso specifiedConstantConfinedGWFluxBC
+wmake libso wellConfinedBC
+cd ..
+cd modFlowFOAM/
+wmake confinedGWFlowFOAM
+cd confinedGWFlowROM/
+wmake preComputation
+wmake snapshotMatrix
+wmake reducedConfinedGWFlowFOAM
