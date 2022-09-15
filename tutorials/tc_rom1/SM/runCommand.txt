@@ -1,0 +1,5 @@
+foamCleanTutorials
+foamCleanPolyMesh
+gmshToFoam domain.msh > logMesh
+checkMesh > logCheckMesh
+snapshotMatrix > logSolution
