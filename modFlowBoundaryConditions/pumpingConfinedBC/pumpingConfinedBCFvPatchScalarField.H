@@ -23,65 +23,66 @@ License
     Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 /*-----------------------------------------------------------------------*\
 Class
-    Foam::specifiedConstantConfinedGWFluxBCFvPatchScalarField
+    Foam::pumpingConfinedBCFvPatchScalarField
 
 Group
-    specifiedConstantConfinedGWFluxBC/modFlowBoundaryConditions
+    pumpingConfinedBC/modFlowBoundaryConditions
 
 Description
-    This boundary condition calculates the normal gradient of hydraulic head 
-    due to time constant specified flux value at that boundary.
+    This boundary condition calculates the normal gradient of pressure head 
+    due to time constant pumping rate at the well-boundary for a confined 
+    aquifer.
 \*-----------------------------------------------------------------------*/
-#ifndef specifiedConstantConfinedGWFluxBCFvPatchScalarField_H
-#define specifiedConstantConfinedGWFluxBCFvPatchScalarField_H
+#ifndef pumpingConfinedBCFvPatchScalarField_H
+#define pumpingConfinedBCFvPatchScalarField_H
 
 #include "fvPatchFields.H"
 #include "fixedGradientFvPatchFields.H"
 
 namespace Foam
 {
-class specifiedConstantConfinedGWFluxBCFvPatchScalarField
+class pumpingConfinedBCFvPatchScalarField
 :
 	public fixedGradientFvPatchScalarField
 	{
 		//Private Data
-		vectorField qC_; //Time Constant Flux
+		scalarField qC_; //Time Constant Pumping Rate
 		
 		public:
 
 			//Runtime type information
-			TypeName("specifiedConstantConfinedGWFluxBC");
+			TypeName("pumpingConfinedBC");
 			
 			//Constructors
 				
 				//Construct from patch and internal field
-				specifiedConstantConfinedGWFluxBCFvPatchScalarField
+				pumpingConfinedBCFvPatchScalarField
 				(
 					const fvPatch&,
 					const DimensionedField<scalar, volMesh>&
 				);
 				
 				//Construct from patch,internal field and dictionary
-				specifiedConstantConfinedGWFluxBCFvPatchScalarField
+				pumpingConfinedBCFvPatchScalarField
 				(
 					const fvPatch&,
 					const DimensionedField<scalar, volMesh>&,
 					const dictionary&
 				);
 				
-				//Construct by mapping given specifiedConstantConfinedGWFluxBCFvPatchScalarField onto a new patch
-				specifiedConstantConfinedGWFluxBCFvPatchScalarField
+				//Construct by mapping given pumpingConfinedBCFvPatchScalarField onto a new patch
+				pumpingConfinedBCFvPatchScalarField
 				(
-					const specifiedConstantConfinedGWFluxBCFvPatchScalarField&,
+					const pumpingConfinedBCFvPatchScalarField&,
 					const fvPatch&,
 					const DimensionedField<scalar, volMesh>&,
 					const fvPatchFieldMapper&
 				);
 				
 				//- Construct as copy
-				specifiedConstantConfinedGWFluxBCFvPatchScalarField
+				pumpingConfinedBCFvPatchScalarField
 				(
-					const specifiedConstantConfinedGWFluxBCFvPatchScalarField&
+					const pumpingConfinedBCFvPatchScalarField&
 				);
 				
 				//Construct and return a clone
@@ -89,14 +90,14 @@ class specifiedConstantConfinedGWFluxBCFvPatchScalarField
 				{
 					return tmp<fvPatchScalarField>
 					(
-						new specifiedConstantConfinedGWFluxBCFvPatchScalarField(*this)
+						new pumpingConfinedBCFvPatchScalarField(*this)
 					);
 				}
 				
 				//Construct as copy setting internal field reference
-				specifiedConstantConfinedGWFluxBCFvPatchScalarField
+				pumpingConfinedBCFvPatchScalarField
 				(
-					const specifiedConstantConfinedGWFluxBCFvPatchScalarField&,
+					const pumpingConfinedBCFvPatchScalarField&,
 					const DimensionedField<scalar, volMesh>&
 				);
 				
@@ -108,7 +109,7 @@ class specifiedConstantConfinedGWFluxBCFvPatchScalarField
 				{
 					return tmp<fvPatchScalarField>
 					(
-						new specifiedConstantConfinedGWFluxBCFvPatchScalarField(*this, iF)
+						new pumpingConfinedBCFvPatchScalarField(*this, iF)
 					);
 				}
 				
@@ -120,13 +121,13 @@ class specifiedConstantConfinedGWFluxBCFvPatchScalarField
 				//Write
 				virtual void write(Ostream&) const;
 				
-				//Return Time Constant Flux
-				virtual const vectorField& qC() const
+				//Return Time Constant Pumping Rate
+				virtual const scalarField& qC() const
 				{
 					return qC_;
 				}
 
-				virtual vectorField& qC()
+				virtual scalarField& qC()
 				{
 					return qC_;
 				}

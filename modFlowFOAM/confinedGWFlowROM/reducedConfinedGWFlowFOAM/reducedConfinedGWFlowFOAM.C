@@ -30,7 +30,7 @@ Group
 
 Description
     Proper Orthogonal Decomposition (POD) based reduced-order modeling of 
-    unsteady flow through a homogeneous/heterogeneous confined aquifer.
+    unsteady flow through a homogeneous/heterogeneous confined aquifer
 \*-----------------------------------------------------------------------*/
 #include "fvCFD.H"
 #include "fvOptions.H"

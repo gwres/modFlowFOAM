@@ -29,7 +29,7 @@ Group
     preComputation/confinedGWFlowROM/modFlowFOAM
 
 Description
-    Reads a CSV file line by line and stores in a Matrix.
+    Reads a CSV file line by line and stores in a matrix
 \*-----------------------------------------------------------------------*/
 #ifndef readCSV_H
 #define readCSV_H

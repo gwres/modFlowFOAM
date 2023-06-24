@@ -29,7 +29,7 @@ Group
     confinedGWFlowFOAM/modFlowFOAM
 
 Description
-    Reads the input parameters for confined groundwater flow
+    Reads the input parameters for confined groundwater flow modeling
 \*-----------------------------------------------------------------------*/
 
 word conductivityFieldMode(modelDict.lookup("conductivityFieldMode"));

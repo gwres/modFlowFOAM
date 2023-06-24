@@ -1,0 +1,3 @@
+pumpingConfinedBCFvPatchScalarField.C
+
+LIB = $(FOAM_USER_LIBBIN)/pumpingConfinedBC

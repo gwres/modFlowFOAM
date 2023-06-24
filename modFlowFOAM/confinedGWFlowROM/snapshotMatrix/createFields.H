@@ -30,7 +30,7 @@ Group
 
 Description
     Reduced-order modeling of unsteady state groundwater flow through 
-    a homogeneous/heterogeneous confined aquifer.
+    a homogeneous/heterogeneous confined aquifer
 \*-----------------------------------------------------------------------*/
 Info<< "Reading HYDRAULIC HEAD field h\n" << endl;
 

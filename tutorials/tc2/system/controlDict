@@ -72,6 +72,6 @@ functions
     }
 }
 
-libs ("specifiedConstantConfinedGWFluxBC.so");
+libs ("pumpingConfinedBC.so");
 
 // ************************************************************************* //

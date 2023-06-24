@@ -27,7 +27,7 @@ boundaryField
     }
     wellBoundary
     {
-        type            specifiedConstantConfinedGWFluxBC;
+        type            pumpingConfinedBC;
         qC				uniform 0.1842;
         value           uniform 0;
     }

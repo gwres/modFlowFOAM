@@ -30,7 +30,7 @@ Group
 
 Description
     Pre-computation required for reduced-order modeling of unsteady flow 
-    through a homogeneous/heterogeneous confined aquifer.
+    through a homogeneous/heterogeneous confined aquifer
 \*-----------------------------------------------------------------------*/
 #include "fvCFD.H"
 #include "fvOptions.H"
@@ -115,7 +115,8 @@ int main(int argc, char *argv[])
 	vecBasisT = vecBasis.T();
 	
 	//----------------------------------------------------------------------------------------------------//
-	SquareMatrix <scalar> matStiff(N_ele, 0.0); 						//Initialization of the Stiffness Matrix
+	//SquareMatrix <scalar> matStiff(N_ele, 0.0); 						//Initialization of the Stiffness Matrix
+	SquareMatrix <scalar> matStiff(N_ele, 0.0);
 	RectangularMatrix <scalar> matTemp(N_ele,Np);
 	RectangularMatrix <scalar> matProj(Np,Np);
 	RectangularMatrix <scalar> matProjInv(Np,Np);

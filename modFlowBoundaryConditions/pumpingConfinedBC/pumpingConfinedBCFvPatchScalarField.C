@@ -23,16 +23,17 @@ License
     Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 /*-----------------------------------------------------------------------*\
 Class
-    Foam::specifiedConstantConfinedGWFluxBCFvPatchScalarField
+    Foam::pumpingConfinedBCFvPatchScalarField
 
 Group
-    specifiedConstantConfinedGWFluxBC/modFlowBoundaryConditions
+    pumpingConfinedBC/modFlowBoundaryConditions
 
 Description
-    This boundary condition calculates the normal gradient of hydraulic head 
-    due to time constant specified flux value at that boundary.
+    This boundary condition calculates the normal gradient of pressure head 
+    due to time constant pumping rate at the well-boundary for a confined 
+    aquifer.
 \*-----------------------------------------------------------------------*/
-#include "specifiedConstantConfinedGWFluxBCFvPatchScalarField.H"
+#include "pumpingConfinedBCFvPatchScalarField.H"
 #include "addToRunTimeSelectionTable.H"
 #include "fvPatchFieldMapper.H"
 #include "volFields.H"
@@ -42,7 +43,7 @@ namespace Foam
 {
 	//Constructors
 	
-	specifiedConstantConfinedGWFluxBCFvPatchScalarField::specifiedConstantConfinedGWFluxBCFvPatchScalarField
+	pumpingConfinedBCFvPatchScalarField::pumpingConfinedBCFvPatchScalarField
 	(
 		const fvPatch& p,
 		const DimensionedField<scalar, volMesh>& iF
@@ -52,7 +53,7 @@ namespace Foam
 		qC_(0.0)
 		{}
 	/*-------------------------------------------------------------------------------------*/
-	specifiedConstantConfinedGWFluxBCFvPatchScalarField::specifiedConstantConfinedGWFluxBCFvPatchScalarField
+	pumpingConfinedBCFvPatchScalarField::pumpingConfinedBCFvPatchScalarField
 	(
 		const fvPatch& p,
 		const DimensionedField<scalar, volMesh>& iF,
@@ -75,9 +76,9 @@ namespace Foam
 			}
 		}
 	/*-------------------------------------------------------------------------------------*/	
-	specifiedConstantConfinedGWFluxBCFvPatchScalarField::specifiedConstantConfinedGWFluxBCFvPatchScalarField
+	pumpingConfinedBCFvPatchScalarField::pumpingConfinedBCFvPatchScalarField
 	(
-		const specifiedConstantConfinedGWFluxBCFvPatchScalarField& ptf,
+		const pumpingConfinedBCFvPatchScalarField& ptf,
 		const fvPatch& p,
 		const DimensionedField<scalar, volMesh>& iF,
 		const fvPatchFieldMapper& mapper
@@ -87,18 +88,18 @@ namespace Foam
 		qC_(ptf.qC_, mapper)
 		{}
 	/*-------------------------------------------------------------------------------------*/
-	specifiedConstantConfinedGWFluxBCFvPatchScalarField::specifiedConstantConfinedGWFluxBCFvPatchScalarField
+	pumpingConfinedBCFvPatchScalarField::pumpingConfinedBCFvPatchScalarField
 	(
-		const specifiedConstantConfinedGWFluxBCFvPatchScalarField& ptf
+		const pumpingConfinedBCFvPatchScalarField& ptf
 	)
 	:
 		fixedGradientFvPatchScalarField(ptf),
 		qC_(ptf.qC_)
 		{}
 	/*-------------------------------------------------------------------------------------*/
-	specifiedConstantConfinedGWFluxBCFvPatchScalarField::specifiedConstantConfinedGWFluxBCFvPatchScalarField
+	pumpingConfinedBCFvPatchScalarField::pumpingConfinedBCFvPatchScalarField
 	(
-		const specifiedConstantConfinedGWFluxBCFvPatchScalarField& ptf,
+		const pumpingConfinedBCFvPatchScalarField& ptf,
 		const DimensionedField<scalar, volMesh>& iF
 	)
 	:
@@ -108,7 +109,7 @@ namespace Foam
 	
 	//Member Functions
 	
-	void specifiedConstantConfinedGWFluxBCFvPatchScalarField::updateCoeffs()
+	void pumpingConfinedBCFvPatchScalarField::updateCoeffs()
 	{
 		if (updated())
 		{
@@ -117,19 +118,21 @@ namespace Foam
 		
 		const fvPatchField<tensor>& T_B = patch().lookupPatchField<volTensorField, tensor>("T");
 		
-		gradient() = -((qC_ & inv(T_B)) & patch().nf());
+		const vectorField qC_B = qC_*(patch().nf());
+                
+        gradient() = -((qC_B & inv(T_B)) & patch().nf());
         
         fixedGradientFvPatchScalarField::updateCoeffs();
 	}
 	
 	//Write
-	void specifiedConstantConfinedGWFluxBCFvPatchScalarField::write(Ostream& os) const
+	void pumpingConfinedBCFvPatchScalarField::write(Ostream& os) const
 	{
 		fixedGradientFvPatchScalarField::write(os);
 		qC_.writeEntry("qC", os);
 		writeEntry("value", os);
 	}
 	
-	makePatchTypeField(fvPatchScalarField, specifiedConstantConfinedGWFluxBCFvPatchScalarField);
+	makePatchTypeField(fvPatchScalarField, pumpingConfinedBCFvPatchScalarField);
 			
 } //End namespace Foam

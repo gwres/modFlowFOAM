@@ -30,7 +30,7 @@ Group
 
 Description
     Formation of snapshot matrix for reduced-order modeling of unsteady 
-    flow through a homogeneous/heterogeneous confined aquifer.
+    flow through a homogeneous/heterogeneous confined aquifer
 \*-----------------------------------------------------------------------*/
 #include "fvCFD.H"
 #include "fvOptions.H"

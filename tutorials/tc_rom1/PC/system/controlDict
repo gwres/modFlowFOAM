@@ -49,6 +49,6 @@ adjustTimeStep  	true;
 
 maxDeltaT       	86400;
 
-libs ("specifiedConstantConfinedGWFluxBC.so");
+libs ("pumpingConfinedBC.so");
 
 // ************************************************************************* //
