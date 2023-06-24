@@ -5,6 +5,7 @@ set -x
 # Compiling solvers 
 
 cd modFlowBoundaryConditions/
+wmake libso pumpingConfinedBC
 wmake libso specifiedConstantConfinedGWFluxBC
 wmake libso wellConfinedBC
 cd ..

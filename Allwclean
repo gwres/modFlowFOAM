@@ -5,6 +5,8 @@ set -x
 # cleaning solvers 
 
 cd modFlowBoundaryConditions/
+wclean pumpingConfinedBC
+rm ${FOAM_USER_LIBBIN}/pumpingConfinedBC.so
 wclean specifiedConstantConfinedGWFluxBC
 rm ${FOAM_USER_LIBBIN}/specifiedConstantConfinedGWFluxBC.so
 wclean wellConfinedBC
